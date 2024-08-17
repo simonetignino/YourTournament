@@ -1,0 +1,10 @@
+# global
+TODO.txt
+
+# backend
+backend/.env
+backend/node_modules
+
+# frontend
+frontend/.env
+frontend/node_modules
