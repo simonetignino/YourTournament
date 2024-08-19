@@ -9,7 +9,15 @@ export default function Register() {
     name: "",
     surname: "",
     email: "",
+    nickname: "",
+    avatar: "",
+    officialTeam: "",
+    position: "",
+    age: "",
+    nationality: "",
+    birthday: "",
     password: "",
+    googleId: "",
   });
 
   const navigate = useNavigate();

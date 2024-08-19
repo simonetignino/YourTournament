@@ -22,8 +22,9 @@ export const getPlayers = () => api.get("/players");
 export const getPlayer = (id) => api.get(`/players/${id}`);
 export const createPlayer = (playerData) =>
     api.post("/players", playerData, {
-        headers: { "Content-type": "multipart/form-data" },
+        headers: { "Content-Type": "multipart/form-data" },
     });
+
 export const updatePlayer = (id, playerData) =>
     api.patch(`/players/${id}`, playerData);
 export const deletePlayer = (id) => api.delete(`/players/${id}`);
@@ -41,6 +42,7 @@ export const deletePlayer = (id) => api.delete(`/players/${id}`);
 export const loginUser = async(credentials) => {
     try {
         const response = await api.post("/auth/login", credentials);
+        console.log("Risposta API login:", response.data); // Log della risposta per debugging
         return response.data;
     } catch (error) {
         console.error("Errore nella chiamata API di login", error);

@@ -7,13 +7,13 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import "./MyNavbar.css";
 import { useNavigate } from "react-router-dom";
 
-function MyNavbar() {
+function MyNavbar({ setIsLogged }) {
   // Funzione per il logout
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLogged(false);
-    navigate("/login");
+    navigate("/");
   };
 
   return (
@@ -38,9 +38,7 @@ function MyNavbar() {
               <NavDropdown.Item href="#action4">Crea Torneo</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action5">Accedi</NavDropdown.Item>
-              <NavDropdown.Item onClick={handleLogout} href="#action5">
-                Logout
-              </NavDropdown.Item>
+              <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Form className="d-flex">

@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { loginUser } from "../../../services/api";
 
-function Login() {
+function Login({ setIsLogged }) {
   const [formData, setFormData] = useState({ email: "", password: "" });
 
   const navigate = useNavigate();
@@ -32,11 +32,14 @@ function Login() {
     e.preventDefault();
     try {
       const response = await loginUser(formData);
+
       localStorage.setItem("token", response.token);
       window.dispatchEvent(new Event("storage"));
       navigate("/");
+      // console.log("login effettuato con successo");
+      setIsLogged(true);
     } catch (error) {
-      console.error("errore durante il login", err);
+      console.error("errore durante il login", error);
       alert("Credenziali non valide. Riprova");
     }
   };

@@ -15,14 +15,41 @@ import {
 import Register from "./pages/Register/Register";
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState();
+
+  useEffect(() => {
+    const checkLoginStatus = () => {
+      const token = localStorage.getItem("token");
+      setIsLogged(!!token);
+    };
+
+    // controllo lo stato del login all'avvio'
+    checkLoginStatus();
+
+    // Utilizzo un event listener per controllare lo stato di login
+    window.addEventListener("storage", checkLoginStatus);
+
+    // Rimuovi l'event listener quando il componente viene smontato
+    return () => {
+      window.removeEventListener("storage", checkLoginStatus);
+    };
+  }, []);
 
   return (
     <Router>
-      <MyNavbar />
+      <MyNavbar setIsLogged={setIsLogged} />
       <Container>
         <Routes>
-          <Route path="/" element={isLogged ? <Home /> : <Login />} />
+          <Route
+            path="/"
+            element={
+              isLogged ? (
+                <Home />
+              ) : (
+                <Login isLogged={isLogged} setIsLogged={setIsLogged} />
+              )
+            }
+          />
           <Route path="/register" element={<Register />} />
         </Routes>
       </Container>
