@@ -5,7 +5,10 @@ const authMiddleware = async(req, res, next) => {
     try {
         // estraggo il token dell'header
         // replace (---) toglie il prefisso "Bearer" dal token
-        const token = req.headers.authorization ? .replace("Bearer ", "");
+        // const token = req.headers.authorization?.replace("Bearer ", "");
+        const token = req.headers.authorization ?
+            req.headers.authorization.replace("Bearer ", "") :
+            null;
 
         if (!token) {
             // se non c'è nessun token, rispondo con errore 401 UNAUTHORIZED

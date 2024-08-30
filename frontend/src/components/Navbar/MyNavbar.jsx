@@ -5,7 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "./MyNavbar.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function MyNavbar({ setIsLogged }) {
   // Funzione per il logout
@@ -35,7 +35,7 @@ function MyNavbar({ setIsLogged }) {
               <NavDropdown.Item href="#action3">
                 Partecipa a torneo
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action4">Crea Torneo</NavDropdown.Item>
+              <NavDropdown.Item><Link to={"/create"}>Crea Torneo</Link></NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action5">Accedi</NavDropdown.Item>
               <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>

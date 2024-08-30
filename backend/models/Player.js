@@ -11,6 +11,7 @@ const playerSchema = new mongoose.Schema({
     officialTeam: {
         type: String,
     },
+    games: [{ type: mongoose.Schema.Types.ObjectId, ref: "Games" }],
     position: { type: String },
     age: { type: Number },
     nationality: { type: String },

@@ -4,6 +4,7 @@ import { Col, Row } from "react-bootstrap";
 import { getTournaments } from "../../../services/api";
 import "./Home.css";
 import SoonTournaments from "../../components/Soon/SoonTournaments";
+import { Link } from "react-router-dom";
 
 function Home() {
   // funzione per l'estrazione dei tornei dal DB
@@ -49,7 +50,7 @@ function Home() {
         <h1 className="text-center mt-4 text-white rgb-border">
           Benvenuto, dai un occhiata ai nostri tornei!
         </h1>
-        <Row className="d-flex justify-content-center align-items-center flex-column mt-4">
+        {/* <Row className="d-flex justify-content-center align-items-center flex-column mt-4">
           {isLoading ? (
             <p>Caricamento...</p>
           ) : error ? (
@@ -57,7 +58,7 @@ function Home() {
           ) : (
             <Tournaments tournaments={tournaments} />
           )}
-        </Row>
+        </Row> */}
         <h1 className="text-white">Prossimamente...</h1>
         <Row>
           {isLoading ? (
@@ -69,7 +70,7 @@ function Home() {
           )}
         </Row>
       </Col>
-    </Row>
+    </Row>        
   );
 }
 

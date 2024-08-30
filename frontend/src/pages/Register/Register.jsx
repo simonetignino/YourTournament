@@ -43,36 +43,35 @@ export default function Register() {
 
   return (
     <div className="d-flex align-items-center justify-content-center mt-5">
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="formBasicEmail">
+      <Form>
+        <Form.Group controlId="formBasicName">
           <Form.Control
             className="mb-1"
             type="text"
             name="name"
-            onChange={handleChange}
             placeholder="Nome"
           />
+        </Form.Group>
+        <Form.Group controlId="formBasicSurname">
           <Form.Control
             className="mb-1"
             type="text"
             name="surname"
-            onChange={handleChange}
             placeholder="Cognome"
           />
+        </Form.Group>
+        <Form.Group controlId="formBasicEmail">
           <Form.Control
             className="mb-1"
-            type="text"
+            type="email"
             name="email"
-            onChange={handleChange}
             placeholder="Email"
           />
         </Form.Group>
-
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Control
             type="password"
             name="password"
-            onChange={handleChange}
             placeholder="Password"
           />
         </Form.Group>

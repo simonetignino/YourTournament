@@ -13,9 +13,34 @@ import {
   Navigate,
 } from "react-router-dom";
 import Register from "./pages/Register/Register";
+import { Button } from "react-bootstrap";
+import axios from "axios";
+import CreateTournament from "./pages/CreateTorunament/CreateTournament"
+import SingleTournament from "./pages/SingleTournament/SingleTournament"
 
 function App() {
   const [isLogged, setIsLogged] = useState();
+  const [games, setGames] = useState([]);
+
+  // const fetchGames = async () => {
+  //   const client_id = import.meta.env.REACT_APP_CLIENT_ID;
+  //   const access_token = import.meta.env.REACT_APP_ACCESS_TOKEN;
+  //   try {
+  //     const response = await fetch("https://api.igdb.com/v4/games", {
+  //       method: "POST",
+  //       headers: {
+  //         'Accept': "application/json",
+  //         "Client-ID": client_id,
+  //         "Authorization": `Bearer ${access_token}`,
+  //       },
+  //       body: "fields name,summary,rating; limit 10;",
+  //     });
+  //     console.log(response);
+  //     setGames(response.data);
+  //   } catch (error) {
+  //     console.error("Errore nel caricamento dei giochi", error);
+  //   }
+  // };
 
   useEffect(() => {
     const checkLoginStatus = () => {
@@ -38,6 +63,7 @@ function App() {
   return (
     <Router>
       <MyNavbar setIsLogged={setIsLogged} />
+      {/* <Button onClick={fetchGames}>getGames</Button> */}
       <Container>
         <Routes>
           <Route
@@ -51,6 +77,8 @@ function App() {
             }
           />
           <Route path="/register" element={<Register />} />
+          <Route path="/create" element={<CreateTournament />} />
+          <Route path="/tournaments/:id" element={<SingleTournament />} />
         </Routes>
       </Container>
     </Router>
