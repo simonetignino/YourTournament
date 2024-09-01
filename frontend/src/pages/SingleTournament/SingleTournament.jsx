@@ -57,9 +57,7 @@ export default function SingleTournament() {
                 <Badge bg="custom" style={{ backgroundColor: getStatusColor(tournament.status) }}>
                   {tournament.status}
                 </Badge>
-                <Button variant='danger'>
-                  {user.email === tournament.organizer.email && <Settings size={20} /> }
-                </Button>
+                  {user.email === tournament.organizer.email && <Button variant='danger'><Settings size={20} /> </Button>}
               </div>
               <p className="tournament-description">{tournament.rules}</p>
               <div className="info-grid">
@@ -121,7 +119,7 @@ export default function SingleTournament() {
 
           <Card className="organizer-card">
             <Card.Body>
-              <h3>Organizzatore: {tournament.organizer.nickname}</h3>
+              <h3>Organizzatore: {tournament.organizer.nickname.length > 0 ? tournament.organizer.nickname : tournament.organizer.name}</h3>
               <p>Email: {tournament.organizer.email}</p>
             </Card.Body>
           </Card>
