@@ -12,7 +12,7 @@ const authMiddleware = async(req, res, next) => {
 
         if (!token) {
             // se non c'è nessun token, rispondo con errore 401 UNAUTHORIZED
-            return res.status(401).send("mbare, manca il token");
+            return res.status(401).send("Manca il token");
         }
         // Verifico/decodifico il token con una funzione dedicata (verifyJWT)
         const decoded = await verifyJWT(token);

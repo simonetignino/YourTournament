@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 const playerSchema = new mongoose.Schema({
     name: { type: String },
     surname: { type: String },
-    email: { type: String },
+    email: { type: String, unique: true },
     nickname: { type: String },
     avatar: { type: String },
     officialTeam: {

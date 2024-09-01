@@ -1,0 +1,103 @@
+body {
+    background-color: #302E33;
+    color: #E0E0E0;
+}
+
+.tournament-creation .creation-card {
+    background-color: #3A3541;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tournament-creation h1 {
+    color: #9575CD;
+    font-weight: bold;
+}
+
+.tournament-creation .form-label,
+.tournament-creation .form-control {
+    color: #E0E0E0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tournament-creation .form-control,
+.tournament-creation .form-select {
+    background-color: #4A4356;
+    border: 1px solid #5E4285;
+    color: #B0BEC5;
+}
+
+.tournament-creation .form-control:focus,
+.tournament-creation .form-select:focus {
+    background-color: #4A4356;
+    border-color: #7E57C2;
+    box-shadow: 0 0 0 0.2rem rgba(126, 87, 194, 0.25);
+    color: #E0E0E0;
+}
+
+.tournament-creation .form-select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%239575CD' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+}
+
+.tournament-creation .form-select:focus {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%237E57C2' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+}
+
+.tournament-creation .form-check-input {
+    background-color: #4A4356;
+    border-color: #5E4285;
+}
+
+.tournament-creation .form-check-input:checked {
+    background-color: #7E57C2;
+    border-color: #7E57C2;
+}
+
+.tournament-creation .btn-primary {
+    background-color: #7E57C2;
+    border-color: #7E57C2;
+    transition: all 0.3s ease;
+}
+
+.tournament-creation .btn-primary:hover {
+    background-color: #9575CD;
+    border-color: #9575CD;
+    transform: translateY(-2px);
+}
+
+.tournament-creation svg {
+    color: #9575CD;
+}
+
+.placeholder {
+    color: #E0E0E0
+}
+
+.custom-placeholder::placeholder {
+    color: #B0BEC5;
+}
+
+.private-or-not {
+    color: #E0E0E0;
+}
+
+
+/* Rimozione della sottolineatura dai link */
+
+a,
+a:hover,
+a:focus,
+a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* Stile per l'hover sui link, se desiderato */
+
+a:hover {
+    color: #9575CD;
+}

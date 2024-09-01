@@ -15,9 +15,21 @@ body {
 }
 
 .tournament-title {
-    color: #9575CD;
+    color: #E0E0E0;
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
+}
+
+.rules h3,
+.registration-card h3,
+.organizer-card h3 {
+    color: #E0E0E0;
+}
+
+.rules,
+.registration-card,
+.organizer-card {
+    color: #B0BEC5;
 }
 
 .tournament-description {

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Badge, Button, Spinner } from 'react-bootstrap';
-import { Calendar, MapPin, Users, Flag, Clock, Award, DollarSign } from 'lucide-react';
+import { Calendar, MapPin, Users, Flag, Clock, Award, DollarSign, Settings } from 'lucide-react';
 import "./SingleTournament.css"
-import { getTournament } from '../../../services/api';
+import { getMe, getTournament } from '../../../services/api';
 import { useParams } from 'react-router-dom';
 
 export default function SingleTournament() {
   const [tournament, setTournament] = useState(null);
   const {id} = useParams()
+  const [user, setUser] = useState({})
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -18,19 +19,23 @@ export default function SingleTournament() {
     }
   };
 
-
   useEffect(() => {
-    const fetchTournament = async () => {
+    const fetchTournamentAndUser = async () => {
       try {
         const tournamentData = await getTournament(id);
-        setTournament(tournamentData.data)
+        setTournament(tournamentData.data);
+        const userData = await getMe();
+        setUser(userData);
+        console.log(tournamentData.data);
       } catch (error) {
         console.error("Errore nel caricamento del post: ", error)
+        console.error("Errore nel recupero dei dati utente", error);
+        navigate("/login")
       }
     };
 
-    fetchTournament();
-  })
+    fetchTournamentAndUser();
+  }, [])
 
   if (!tournament) {
     return (
@@ -52,6 +57,9 @@ export default function SingleTournament() {
                 <Badge bg="custom" style={{ backgroundColor: getStatusColor(tournament.status) }}>
                   {tournament.status}
                 </Badge>
+                <Button variant='danger'>
+                  {user.email === tournament.organizer.email && <Settings size={20} /> }
+                </Button>
               </div>
               <p className="tournament-description">{tournament.rules}</p>
               <div className="info-grid">
@@ -79,7 +87,7 @@ export default function SingleTournament() {
             </Card.Body>
           </Card>
 
-          <Card className="mb-4">
+          <Card className="mb-4 rules">
             <Card.Body>
               <h3>Regolamento</h3>
               <p>{tournament.rules}</p>
@@ -105,18 +113,16 @@ export default function SingleTournament() {
           <Card className="mb-4 registration-card">
             <Card.Body>
               <h3>Iscrizione</h3>
-              <p>Quota: €{tournament.price}</p>
-              <p>Scadenza: {new Date(tournament.endDate).toLocaleDateString()}</p>
-              <Button variant="primary" size="lg">Iscriviti ora</Button>
+              <p>Quota: {tournament.price > 0 ? `€${tournament.price}` : "Gratis"}</p>
+              <p>Scadenza: {new Date(tournament.endRegistrationDate).toLocaleDateString()}</p>
+              <Button variant="primary" size="lg">Partecipa</Button>
             </Card.Body>
           </Card>
 
           <Card className="organizer-card">
             <Card.Body>
-              <h3>Organizzatore</h3>
-              <p>{tournament.organizer}</p>
-              <p>Email: {tournament.organizer}</p>
-              <p>Telefono: {tournament.organizer}</p>
+              <h3>Organizzatore: {tournament.organizer.nickname}</h3>
+              <p>Email: {tournament.organizer.email}</p>
             </Card.Body>
           </Card>
         </Col>

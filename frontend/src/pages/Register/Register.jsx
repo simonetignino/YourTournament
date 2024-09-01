@@ -43,13 +43,14 @@ export default function Register() {
 
   return (
     <div className="d-flex align-items-center justify-content-center mt-5">
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicName">
           <Form.Control
             className="mb-1"
             type="text"
             name="name"
             placeholder="Nome"
+            onChange={handleChange}
           />
         </Form.Group>
         <Form.Group controlId="formBasicSurname">
@@ -58,6 +59,7 @@ export default function Register() {
             type="text"
             name="surname"
             placeholder="Cognome"
+            onChange={handleChange}
           />
         </Form.Group>
         <Form.Group controlId="formBasicEmail">
@@ -66,6 +68,7 @@ export default function Register() {
             type="email"
             name="email"
             placeholder="Email"
+            onChange={handleChange}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -73,6 +76,7 @@ export default function Register() {
             type="password"
             name="password"
             placeholder="Password"
+            onChange={handleChange}
           />
         </Form.Group>
         <Button variant="primary" type="submit">

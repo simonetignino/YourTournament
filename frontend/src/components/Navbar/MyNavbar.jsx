@@ -22,7 +22,7 @@ function MyNavbar({ setIsLogged }) {
         <Navbar.Brand href="#">
           <img id="logo-navbar" src="/src/assets/yourTournament.png" alt="" />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Toggle className="custom-toggler" aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
@@ -35,13 +35,13 @@ function MyNavbar({ setIsLogged }) {
               <NavDropdown.Item href="#action3">
                 Partecipa a torneo
               </NavDropdown.Item>
-              <NavDropdown.Item><Link to={"/create"}>Crea Torneo</Link></NavDropdown.Item>
+              <NavDropdown.Item href="/create">Crea Torneo</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action5">Accedi</NavDropdown.Item>
               <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Form className="d-flex">
+          {/* <Form className="d-flex">
             <Form.Control
               type="search"
               placeholder="Search"
@@ -51,7 +51,7 @@ function MyNavbar({ setIsLogged }) {
             <Button id="button-search" variant="custom">
               Search
             </Button>
-          </Form>
+          </Form> */}
         </Navbar.Collapse>
       </Container>
     </Navbar>
