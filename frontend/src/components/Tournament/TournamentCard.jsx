@@ -41,7 +41,7 @@ function TournamentCard ({ tournaments }) {
                 </div>
                 <div className="info-item">
                   <Users size={16} />
-                  <span>{tournament.participants} partecipanti</span>
+                  <span>{tournament.participantsCount} partecipanti</span>
                 </div>
               </Card.Body>
             </Card>

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import Tournaments from "../../components/Tournament/Tournaments";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Spinner } from "react-bootstrap";
 import { getTournaments } from "../../../services/api";
 import "./Home.css";
 import SoonTournaments from "../../components/Soon/SoonTournaments";
@@ -45,32 +44,40 @@ function Home() {
   }, []);
 
   return (
-    <Row>
-      <Col>
-        <h1 className="text-center mt-4 text-white rgb-border">
-          Benvenuto, dai un occhiata ai nostri tornei!
-        </h1>
-        {/* <Row className="d-flex justify-content-center align-items-center flex-column mt-4">
-          {isLoading ? (
-            <p>Caricamento...</p>
-          ) : error ? (
-            <p>{error}</p>
-          ) : (
-            <Tournaments tournaments={tournaments} />
-          )}
-        </Row> */}
-        <h1 className="text-white">Prossimamente...</h1>
-        <Row>
-          {isLoading ? (
-            <p>Caricamento...</p>
-          ) : error ? (
-            <p>{error} </p>
-          ) : (
-            <SoonTournaments />
-          )}
-        </Row>
-      </Col>
-    </Row>        
+    <>
+      <Row>
+        <Col>
+          <h1 className="text-center mt-4 text-white rgb-border">
+            Benvenuto, dai un occhiata ai nostri tornei!
+          </h1>
+          {/* <Row className="d-flex justify-content-center align-items-center flex-column mt-4">
+            {isLoading ? (
+              <p>Caricamento...</p>
+            ) : error ? (
+              <p>{error}</p>
+            ) : (
+              <Tournaments tournaments={tournaments} />
+            )}
+          </Row> */}
+          <h1 className="text-white">Prossimamente...</h1>
+          <Row>
+            {isLoading ? (
+              <div className="d-flex align-items-center justify-content-center">
+                <Spinner className="" variant="light" animation="border" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              </div>
+              
+            ) : error ? (
+              <p>{error} </p>
+            ) : (
+              <SoonTournaments />
+            )}
+          </Row>
+        </Col>
+      </Row> 
+    </>
+           
   );
 }
 

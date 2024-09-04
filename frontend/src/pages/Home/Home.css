@@ -4,37 +4,37 @@ h1 {
 
 .rgb-border {
     position: relative;
-  }
-  
+}
+
 .rgb-border::after {
-content: '';
-position: absolute;
-bottom: 0;
-left: 0;
-width: 100%;
-height: 2px; /* Puoi regolare lo spessore del bordo */
-background: linear-gradient(to right, 
-    #ff0000 0%,   /* Rosso */
-    #ff9a00 10%,  /* Arancione */
-    #d0de21 20%,  /* Giallo-verde */
-    #4fdc4a 30%,  /* Verde */
-    #3fdad8 40%,  /* Ciano */
-    #2fc9e2 50%,  /* Azzurro */
-    #1c7fee 60%,  /* Blu */
-    #5f15f2 70%,  /* Indaco */
-    #ba0cf8 80%,  /* Viola */
-    #fb07d9 90%,  /* Rosa */
-    #ff0000 100%  /* Torna al rosso */
-);
-background-size: 200% 100%;
-animation: rgb-animation 5s linear infinite;
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    /* Puoi regolare lo spessore del bordo */
+    background: linear-gradient(to right, #ff0000 0%, /* Rosso */
+    #ff9a00 10%, /* Arancione */
+    #d0de21 20%, /* Giallo-verde */
+    #4fdc4a 30%, /* Verde */
+    #3fdad8 40%, /* Ciano */
+    #2fc9e2 50%, /* Azzurro */
+    #1c7fee 60%, /* Blu */
+    #5f15f2 70%, /* Indaco */
+    #ba0cf8 80%, /* Viola */
+    #fb07d9 90%, /* Rosa */
+    #ff0000 100%/* Torna al rosso */
+    );
+    background-size: 200% 100%;
+    animation: rgb-animation 5s linear infinite;
 }
 
 @keyframes rgb-animation {
-100% {
-    background-position: 0% 50%;
-}
-0% {
-    background-position: 200% 50%;
-}
+    100% {
+        background-position: 0% 50%;
+    }
+    0% {
+        background-position: 200% 50%;
+    }
 }

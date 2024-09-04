@@ -1,15 +1,12 @@
 import mongoose from "mongoose";
 
-const participantSchema = new mongoose.Schema({
-    player: {
-        type: Object
-    },
-    registrationDate: {
-        type: Date,
-        default: Date.now
-    },
-}, { _id: false });
-
+const matchSchema = new mongoose.Schema({
+    player1: { type: Object },
+    player2: { tpye: Object },
+    winner: { type: Object },
+    nextMatchId: { type: Object },
+    isFirstPlayerOfNextMatch: { type: Boolean }
+})
 
 const tournamentSchema = new mongoose.Schema({
     name: { type: String, required: true },
@@ -24,19 +21,16 @@ const tournamentSchema = new mongoose.Schema({
     organizer: { type: Object },
     prize: { type: Number },
     private: { type: Boolean },
-    participants: [participantSchema],
+    participants: { type: Array },
     participantsCount: { type: Number, default: 0 },
+    bracket: {
+        rounds: [
+            [matchSchema]
+        ]
+    },
     format: { type: String, enum: ["A Squadre", "Singolo", "A Coppie"] },
     status: { type: String, enum: ["In Arrivo", "In Corso", "Terminato"] },
 }, { collection: "tournaments", timestamps: true });
-
-// Middleware per aggiornare automaticamente participantsCount
-tournamentSchema.pre('save', function(next) {
-    if (this.isModified('participants')) {
-        this.participantsCount = this.participants.length;
-    }
-    next();
-});
 
 const Tournament = mongoose.model("Tournament", tournamentSchema);
 

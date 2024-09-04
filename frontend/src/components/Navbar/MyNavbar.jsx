@@ -6,6 +6,8 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "./MyNavbar.css";
 import { Link, useNavigate } from "react-router-dom";
+import { Dropdown } from "react-bootstrap";
+import { CircleUserRound } from "lucide-react";
 
 function MyNavbar({ setIsLogged }) {
   // Funzione per il logout
@@ -53,6 +55,17 @@ function MyNavbar({ setIsLogged }) {
             </Button>
           </Form> */}
         </Navbar.Collapse>
+        <Dropdown className="profile-settings" drop="start">
+          <Dropdown.Toggle  variant="custom" id="dropdown-basic">
+            <CircleUserRound />
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </Container>
     </Navbar>
   );

@@ -32,7 +32,6 @@ export default function CreateTournament() {
     const fetchUserData = async () => {
       try {
         const userData = await getMe();
-        console.log(userData);
         setTournament((prevTournament) => ({...prevTournament, organizer: userData}))
       } catch (error) {
         console.error("Errore nel recupero dei dati utente", error);
