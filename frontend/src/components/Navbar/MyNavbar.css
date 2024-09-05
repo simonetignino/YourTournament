@@ -3,7 +3,7 @@
 }
 
 .nav-link {
-    color: #fff;
+    color: #e2e2e2;
 }
 
 .nav-link:hover {
@@ -70,5 +70,17 @@
 }
 
 .profile-settings {
-    color: #ffffff;
+    color: #B0BEC5;
+}
+
+.profile-icon {
+    width: 50px;
+    height: 50px;
+    color: #e2e2e2;
+    border-color: #e2e2e2;
+}
+
+.offcanvas-custom {
+    background-color: #302e33;
+    color: #e2e2e2;
 }

@@ -16,11 +16,11 @@ const authMiddleware = async(req, res, next) => {
         }
         // Verifico/decodifico il token con una funzione dedicata (verifyJWT)
         const decoded = await verifyJWT(token);
-        console.log("CLG AUTHMIDDLEWARE DECODED:", decoded);
+        // console.log("CLG AUTHMIDDLEWARE DECODED:", decoded);
 
         // sfrutto l'id dell'autore per trovare l'autore nel DB
         const player = await Player.findById(decoded.id).select("-password");
-        console.log("CLG AUTHMIDDLEWARE AUTHOR:", player);
+        // console.log("CLG AUTHMIDDLEWARE AUTHOR:", player);
 
         // se l'autore non risulta nel db, rispondo con un 401
         if (!player) {

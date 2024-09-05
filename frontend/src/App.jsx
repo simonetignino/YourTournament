@@ -17,6 +17,8 @@ import { Button } from "react-bootstrap";
 import axios from "axios";
 import CreateTournament from "./pages/CreateTorunament/CreateTournament"
 import SingleTournament from "./pages/SingleTournament/SingleTournament"
+import EditTournament from "./pages/EditTournament/EditTournament"
+import EditProfile from "./pages/EditProfile/EditProfile"
 
 function App() {
   const [isLogged, setIsLogged] = useState();
@@ -80,6 +82,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/create" element={<CreateTournament />} />
           <Route path="/tournaments/:id" element={<SingleTournament />} />
+          <Route path="/tournaments/:id/edit" element={<EditTournament />} />
+          <Route path="/players/:id/edit" element={<EditProfile />} />
         </Routes>
       </Container>
     </Router>

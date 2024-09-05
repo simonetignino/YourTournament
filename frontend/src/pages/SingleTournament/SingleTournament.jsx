@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, Badge, Button, Spinner } from 'react-bootstr
 import { Calendar, MapPin, Users, Flag, Award, Settings } from 'lucide-react';
 import "./SingleTournament.css"
 import { getMe, getTournament, updateTournament } from '../../../services/api';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 export default function SingleTournament() {
   const [tournament, setTournament] = useState(null);
@@ -124,11 +124,12 @@ export default function SingleTournament() {
           <Card className="mb-4 main-card">
             <Card.Body>
               <div className="d-flex justify-content-between align-items-center mb-3">
-                <h1 className="tournament-title">{tournament.name}</h1>
+                <h1 className="tournament-title">{user.email === tournament.organizer.email  && <Link className='me-2' to={`/tournaments/${tournament._id}/edit`}><Settings size={20}/></Link>}{tournament.name}</h1>
                 <Badge bg="custom" style={{ backgroundColor: getStatusColor(tournament.status) }}>
-                  {tournament.status}
+                  {tournament.status} 
+                  
                 </Badge>
-                  {user.email === tournament.organizer.email && <Button variant='danger'><Settings size={20} /> </Button>}
+                  
               </div>
               <p className="tournament-description">{tournament.rules}</p>
               <div className="info-grid">
@@ -166,7 +167,7 @@ export default function SingleTournament() {
           {/* Bracket */}
           <Card className="mb-4 matchs-list">
             <Card.Body>
-              <Button onClick={createBracket}>Genera Bracket</Button>
+              {user.email === tournament.organizer.email ? <Button onClick={createBracket}>Genera Bracket</Button> : <p className='text-white p-0 m-0 '>Prossimamente...</p>}
               {bracket.length > 0 && (
                 <div className="bracket">
                   <h3>Tabellone degli Incontri</h3>
@@ -174,10 +175,10 @@ export default function SingleTournament() {
                     <div key={roundIndex} className="round">
                       <h4>Round {roundIndex + 1}</h4>
                       {round.map((match, matchIndex) => (
-                        <div key={matchIndex} className="match">
-                          <div>{match.team1?.name || "Riposo"}</div>
+                        <div key={`${roundIndex}-${matchIndex}`} className="match">
+                          <div>{roundIndex < 1 ? (match.team1?.name) : "Da stabilire"}</div>
                           <div>VS</div>
-                          <div>{match.team2?.name || "Riposo"}</div>
+                          <div>{roundIndex < 1 ? (match.team2?.name) : "Da stabilire"}</div>
                         </div>
                       ))}
                     </div>
@@ -186,6 +187,7 @@ export default function SingleTournament() {
               )}
             </Card.Body>
           </Card>
+
           
           {/* Lista partecipanti */}
           <Card className="mb-4 rules">

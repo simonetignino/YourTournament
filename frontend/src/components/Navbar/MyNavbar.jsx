@@ -6,10 +6,31 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "./MyNavbar.css";
 import { Link, useNavigate } from "react-router-dom";
-import { Dropdown } from "react-bootstrap";
-import { CircleUserRound } from "lucide-react";
+import { ButtonGroup, Dropdown, DropdownButton, Offcanvas } from "react-bootstrap";
+import { UserRound } from "lucide-react";
+import { useEffect, useState } from "react";
+import { getMe } from "../../../services/api";
 
 function MyNavbar({ setIsLogged }) {
+  const [show, setShow] = useState(false);
+  const [user, setUser] = useState({})
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await getMe();
+        setUser(userData)
+        console.log(user);
+      } catch (error) {
+        console.error("impossibile recupera l'utente", error)
+      }
+    }
+    fetchUser();
+  }, [])
+
   // Funzione per il logout
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -37,10 +58,8 @@ function MyNavbar({ setIsLogged }) {
               <NavDropdown.Item href="#action3">
                 Partecipa a torneo
               </NavDropdown.Item>
-              <NavDropdown.Item href="/create">Crea Torneo</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">Accedi</NavDropdown.Item>
-              <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+              <NavDropdown.Item href="/create">Crea Torneo</NavDropdown.Item>              
+              
             </NavDropdown>
           </Nav>
           {/* <Form className="d-flex">
@@ -55,17 +74,22 @@ function MyNavbar({ setIsLogged }) {
             </Button>
           </Form> */}
         </Navbar.Collapse>
-        <Dropdown className="profile-settings" drop="start">
-          <Dropdown.Toggle  variant="custom" id="dropdown-basic">
-            <CircleUserRound />
-          </Dropdown.Toggle>
+        <Button className="rounded-circle p-0 m-0" variant="primary" onClick={handleShow}>
+            <div className="profile-icon p-0 m-0 d-flex align-items-center justify-content-center">
+              <UserRound className="p-0 m-0" />
+            </div>
+        </Button>
 
-          <Dropdown.Menu>
-            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        <Offcanvas className="offcanvas-custom" placement="end" show={show} onHide={handleClose}>
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title>Gestisci profilo</Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body className="d-flex flex-column">
+            <Link className="mb-2" to={`/players/${user._id}/edit`}>Impostazioni account</Link>
+            <Link className="mb-2" to={"/login"}>Accedi</Link>
+            <Link className="mb-2" onClick={handleLogout}>Logout</Link>
+          </Offcanvas.Body>
+        </Offcanvas>
       </Container>
     </Navbar>
   );
