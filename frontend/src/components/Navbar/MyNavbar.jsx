@@ -6,7 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "./MyNavbar.css";
 import { Link, useNavigate } from "react-router-dom";
-import { ButtonGroup, Dropdown, DropdownButton, Offcanvas } from "react-bootstrap";
+import { Offcanvas } from "react-bootstrap";
 import { UserRound } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getMe } from "../../../services/api";
@@ -23,7 +23,6 @@ function MyNavbar({ setIsLogged }) {
       try {
         const userData = await getMe();
         setUser(userData)
-        console.log(user);
       } catch (error) {
         console.error("impossibile recupera l'utente", error)
       }
@@ -36,7 +35,7 @@ function MyNavbar({ setIsLogged }) {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLogged(false);
-    navigate("/");
+    navigate("/login");
   };
 
   return (
@@ -86,7 +85,7 @@ function MyNavbar({ setIsLogged }) {
           </Offcanvas.Header>
           <Offcanvas.Body className="d-flex flex-column">
             <Link className="mb-2" to={`/players/${user._id}/edit`}>Impostazioni account</Link>
-            <Link className="mb-2" to={"/login"}>Accedi</Link>
+            <Link className="mb-2" to={"/login"}>Accedi con un altro account</Link>
             <Link className="mb-2" onClick={handleLogout}>Logout</Link>
           </Offcanvas.Body>
         </Offcanvas>

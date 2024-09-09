@@ -53,7 +53,7 @@ export default function UpdatePlayer() {
         const updatedPlayer = {...player};
         const response = await updatePlayer(id, updatedPlayer);
         setPlayer(response.data);
-        navigate(`/players/${id}`);
+        navigate(`/`);
       }
     } catch (error) {
       console.error("Errore dettagliato:", error.response || error);
