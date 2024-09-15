@@ -5,13 +5,13 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "./MyNavbar.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { Offcanvas } from "react-bootstrap";
 import { UserRound } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getMe } from "../../../services/api";
 
-function MyNavbar({ setIsLogged }) {
+function MyNavbar({ isLogged, setIsLogged }) {
   const [show, setShow] = useState(false);
   const [user, setUser] = useState({})
 
@@ -52,7 +52,6 @@ function MyNavbar({ setIsLogged }) {
             navbarScroll
           >
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="#action2">Come funziona?</Nav.Link>
             <NavDropdown title="Tornei" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">
                 Partecipa a torneo
@@ -84,9 +83,8 @@ function MyNavbar({ setIsLogged }) {
             <Offcanvas.Title>Gestisci profilo</Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body className="d-flex flex-column">
-            <Link className="mb-2" to={`/players/${user._id}/edit`}>Impostazioni account</Link>
-            <Link className="mb-2" to={"/login"}>Accedi con un altro account</Link>
-            <Link className="mb-2" onClick={handleLogout}>Logout</Link>
+            {isLogged && <Link className="mb-2" onClick={handleClose} to={`/players/${user._id}/edit`}>Impostazioni account</Link> }
+            {isLogged ? <Link to={"/login"} className="mb-2" onClick={() => { handleLogout(); handleClose(); }}>Logout</Link> : <Link to={"/login"} className="mb-2" onClick={handleClose}>Accedi</Link> }
           </Offcanvas.Body>
         </Offcanvas>
       </Container>

@@ -64,7 +64,7 @@ function App() {
 
   return (
     <Router>
-      <MyNavbar setIsLogged={setIsLogged} />
+      <MyNavbar setIsLogged={setIsLogged} isLogged={isLogged}/>
       {/* <Button onClick={fetchGames}>getGames</Button> */}
       <Container>
         <Routes>
